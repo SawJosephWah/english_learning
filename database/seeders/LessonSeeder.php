@@ -14,14 +14,19 @@ class LessonSeeder extends Seeder
      */
     public function run(): void
     {
+        $now = Carbon::now();
+
+        // Use the first category's ID (assumes it exists)
+        $categoryId = DB::table('categories')->where('name', 'Restaurant Conversations')->value('id');
+
         DB::table('lessons')->insert([
-            'name' => 'Sample Lesson',
+            'name' => 'Ordering Food at a Restaurant',
             'sort_order' => 1,
-            'category_id' => 2,
+            'category_id' => $categoryId,
             'created_by' => 1,
             'updated_by' => 1,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'created_at' => $now,
+            'updated_at' => $now,
         ]);
     }
 }
